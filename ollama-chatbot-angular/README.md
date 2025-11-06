@@ -2,7 +2,8 @@
 
 A professional, modern Angular application that provides a sleek interface for interacting with locally-hosted Ollama AI models.
 
-![Ollama Chatbot GUI](../chatbot_gui_preview.png)
+<img width="1438" height="817" alt="Screenshot 2025-11-06 at 10 32 41 PM" src="https://github.com/user-attachments/assets/57e109d0-b2ac-4fbc-9289-8e2afd5728bf" />
+
 
 ## 🌟 Features
 
