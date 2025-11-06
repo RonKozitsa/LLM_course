@@ -1,0 +1,113 @@
+<div class="app-container">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h1 class="sidebar-title">⚡ Ollama Chat</h1>
+    </div>
+
+    <div class="sidebar-content">
+      <!-- Model Selection -->
+      <div class="model-section">
+        <label for="model-input" class="input-label">Model:</label>
+        <input 
+          id="model-input"
+          type="text" 
+          [(ngModel)]="currentModel"
+          (change)="onModelChange()"
+          class="model-input"
+          placeholder="e.g., gemma3:1b, mistral"
+        />
+      </div>
+
+      <!-- Connection Status -->
+      <div class="status-section">
+        <span 
+          class="status-indicator" 
+          [ngClass]="getStatusClass()"
+          (click)="refreshConnection()"
+          title="Click to refresh connection"
+        >
+          ● {{ getStatusText() }}
+        </span>
+      </div>
+
+      <!-- Clear Chat Button -->
+      <button 
+        class="clear-btn"
+        (click)="clearChat()"
+        title="Clear chat history"
+      >
+        🗑️ Clear Chat
+      </button>
+    </div>
+
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <p>Powered by Ollama</p>
+      <p>Local AI Processing</p>
+    </div>
+  </div>
+
+  <!-- Main Chat Area -->
+  <div class="main-content">
+    <!-- Header -->
+    <div class="chat-header">
+      <h2 class="chat-title">Chat with AI</h2>
+    </div>
+
+    <!-- Messages Area -->
+    <div class="chat-messages">
+      <div 
+        *ngFor="let message of messages" 
+        class="message"
+        [ngClass]="'message-' + message.type"
+      >
+        <div class="message-header">
+          <span class="message-sender" [ngClass]="'sender-' + message.sender">
+            {{ message.sender === 'user' ? 'You' : message.sender === 'ai' ? 'AI' : 'System' }}
+          </span>
+          <span class="message-timestamp">
+            ({{ message.timestamp | date:'HH:mm' }})
+          </span>
+        </div>
+        <div class="message-content">
+          {{ message.content }}
+        </div>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div *ngIf="isProcessing" class="message message-ai">
+        <div class="message-header">
+          <span class="message-sender sender-ai">AI</span>
+          <span class="message-timestamp">({{ 'now' }})</span>
+        </div>
+        <div class="message-content typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Area -->
+    <div class="input-container">
+      <div class="input-wrapper">
+        <textarea 
+          [(ngModel)]="userInput"
+          (keydown)="onKeyPress($event)"
+          [disabled]="isProcessing"
+          class="message-input"
+          placeholder="Type your message here..."
+          rows="3"
+        ></textarea>
+        <button 
+          (click)="sendMessage()"
+          [disabled]="!userInput.trim() || isProcessing"
+          class="send-button"
+        >
+          Send ➤
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
