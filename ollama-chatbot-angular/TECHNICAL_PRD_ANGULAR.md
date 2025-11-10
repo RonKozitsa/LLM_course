@@ -1492,15 +1492,4 @@ src/
 
 ---
 
-**Document Approval:**
-
-| Role | Name | Date | Signature |
-|------|------|------|-----------|
-| Product Manager | [Name] | [Date] | _________ |
-| Tech Lead (Angular) | [Name] | [Date] | _________ |
-| Engineering | [Name] | [Date] | _________ |
-| QA Lead | [Name] | [Date] | _________ |
-
----
-
 **End of Document**
