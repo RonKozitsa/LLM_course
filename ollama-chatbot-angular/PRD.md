@@ -3,10 +3,10 @@
 ## Ollama Chatbot GUI - Angular Version
 
 **Document Version:** 1.0  
-**Last Updated:** November 6, 2025  
+**Last Updated:** November 10, 2025  
 **Status:** Final  
 **Technology Stack:** Angular 17 + TypeScript 5.2  
-**Owner:** Engineering Team  
+**Owners:** Ron and Itamar  
 
 ---
 
