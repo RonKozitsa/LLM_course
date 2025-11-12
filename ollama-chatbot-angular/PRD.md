@@ -294,7 +294,7 @@ sendMessage(): void {
 - Model input in sidebar
 - Changes persist for session
 - Invalid models show errors
-- Default to 'llama2'
+- Default to 'gemma3:1b'
 
 **Technical Details:**
 ```typescript
