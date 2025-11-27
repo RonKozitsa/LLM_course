@@ -294,6 +294,22 @@ cosine_similarity(A, B) = (A · B) / (||A|| × ||B||)
 3. **Error Correction**: First-stage error correction (English→French) helps normalize quality across error counts
 4. **Language Bridge Effect**: Hebrew as an intermediary (Semitic language) provides an interesting test of cross-linguistic semantic transfer
 
+### 4.4 Correlation Visualization
+
+The following visualization demonstrates the relationship between the number of mistakes and semantic similarity:
+
+![Correlation Between Number of Mistakes and Semantic Similarity](../visualizations/correlation_mistakes_vs_similarity_detailed.png)
+
+**Figure 1**: Correlation analysis showing the relationship between input error count (4-20 mistakes) and semantic similarity after multi-stage translation. The plot includes:
+- **Scatter points** with error bars (±1 standard deviation) representing average similarity for each error level
+- **Linear regression line** (red dashed) showing the negative trend: y = -0.0032x + 0.7276
+- **95% confidence interval** (pink shaded region) for the linear fit
+- **Statistical metrics**: Pearson r = -0.5396 (p = 0.0254), Spearman ρ = -0.5931 (p = 0.0121), R² = 0.2912
+
+**Key Observation**: The moderate negative correlation (r = -0.54, p < 0.05) is statistically significant, confirming that increased error count does impact semantic preservation. However, the R² value of 0.29 indicates that only 29% of the variance is explained by error count alone, suggesting other factors (such as error type, semantic complexity, or translation ambiguity) also play important roles.
+
+**Script Location**: `scripts/create_correlation_graph.py` - Run this script to regenerate the visualization with updated data.
+
 ---
 
 ## 5. Dependencies & Requirements
@@ -306,6 +322,8 @@ numpy>=1.21.0
 sentence-transformers>=2.2.0
 scikit-learn>=1.0.0
 matplotlib>=3.4.0
+scipy>=1.7.0
+seaborn>=0.11.0
 ```
 
 ### 5.2 System Requirements
@@ -609,14 +627,23 @@ The combination of literary-quality translation agents and quantitative semantic
 
 ```
 translation task/
-├── English.csv                          # Input: 170 sentences with errors
-├── French.csv                           # Stage 1 output: French translations
-├── Hebrew.csv                           # Stage 2 output: Hebrew translations
-├── English_final.csv                    # Stage 3 output: Back-translated English
-├── sentence_vector_comparison.py        # Analysis script
-├── vector_similarity_results.csv        # Individual sentence results
-├── vector_similarity_averaged.csv       # Grouped averages by error count
-├── vector_similarity_vs_mistakes.png    # Visualization
+├── data/                               # Data directory
+│   ├── input/                          # Input data
+│   │   └── English.csv                 # 170 sentences with errors
+│   ├── intermediate/                   # Translation stages
+│   │   ├── French.csv                  # Stage 1: French translations
+│   │   └── Hebrew.csv                  # Stage 2: Hebrew translations
+│   └── output/                         # Analysis results
+│       ├── English_final.csv           # Stage 3: Back-translated English
+│       ├── vector_similarity_results.csv      # Individual sentence results
+│       └── vector_similarity_averaged.csv     # Grouped averages by error count
+├── scripts/                            # Analysis scripts
+│   ├── sentence_vector_comparison.py   # Semantic similarity computation
+│   ├── statistical_analysis_enhanced.py # Advanced statistical analysis
+│   └── create_correlation_graph.py     # Generate correlation visualization
+├── visualizations/                     # Generated plots
+│   ├── vector_similarity_vs_mistakes.png      # Basic visualization
+│   └── correlation_mistakes_vs_similarity_detailed.png  # Correlation plot
 ├── tests/                              # Test suite
 │   ├── __init__.py                     # Test package initialization
 │   ├── conftest.py                     # Pytest configuration and fixtures
@@ -624,7 +651,11 @@ translation task/
 │   ├── test_data_validation.py         # Data integrity tests
 │   ├── requirements_test.txt           # Test dependencies
 │   └── README.md                       # Test documentation
-├── PRD.md                              # This document
+├── docs/                               # Documentation
+│   ├── PRD.md                          # This document
+│   ├── ARCHITECTURE.md                 # System architecture
+│   ├── PROMPT_BOOK.md                  # AI agent prompts
+│   └── TOKEN_COST_ANALYSIS.md          # Cost analysis
 └── README.md                           # Project overview
 ```
 

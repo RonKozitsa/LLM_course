@@ -70,11 +70,13 @@ translation task/
 ├── scripts/                            # Python analysis scripts
 │   ├── sentence_vector_comparison.py   # Main similarity analysis
 │   ├── statistical_analysis_enhanced.py # Hypothesis testing & ANOVA
-│   └── comparative_model_analysis.py   # Multi-model comparison
+│   ├── comparative_model_analysis.py   # Multi-model comparison
+│   └── create_correlation_graph.py     # Generate correlation visualization
 ├── notebooks/                          # Jupyter notebooks
 │   └── analysis_notebook.ipynb        # Interactive EDA
 ├── visualizations/                     # Generated plots
 │   ├── vector_similarity_vs_mistakes.png      # Main results plot
+│   ├── correlation_mistakes_vs_similarity_detailed.png  # Correlation analysis
 │   └── model_comparison_visualization.png     # Model comparisons
 ├── docs/                               # Documentation
 │   ├── PRD.md                          # Product Requirements Document (647 lines)
@@ -181,6 +183,23 @@ jupyter notebook notebooks/analysis_notebook.ipynb
 | 10     | 0.6962         | 0.0583  |
 | 15     | 0.6589         | 0.0671  |
 | 20     | 0.6485         | 0.1088  |
+
+### Correlation Visualization
+
+The following plot demonstrates the relationship between error count and semantic similarity:
+
+![Correlation Between Mistakes and Semantic Similarity](visualizations/correlation_mistakes_vs_similarity_detailed.png)
+
+**Figure**: Correlation analysis showing moderate negative correlation (Pearson r = -0.5396, p = 0.0254; Spearman ρ = -0.5931, p = 0.0121) between error count and semantic similarity. The visualization includes:
+- Scatter points with error bars (±1 SD) for each error level (4-20 mistakes)
+- Linear regression trend line: y = -0.0032x + 0.7276
+- 95% confidence interval (pink shaded region)
+- R² = 0.2912, indicating 29.1% of variance is explained by error count
+
+**Generation**: To regenerate this visualization, run:
+```bash
+python scripts/create_correlation_graph.py
+```
 
 ## 🧪 Testing
 
