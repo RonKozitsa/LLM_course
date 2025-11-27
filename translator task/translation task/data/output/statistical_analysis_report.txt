@@ -1,0 +1,66 @@
+================================================================================
+COMPREHENSIVE STATISTICAL ANALYSIS REPORT
+Multi-Stage Translation Quality Analysis System
+================================================================================
+
+EXECUTIVE SUMMARY
+--------------------------------------------------------------------------------
+Total observations: 170
+Error count range: 4-20
+Average similarity: 0.6891
+Similarity range: [0.4510, 0.8793]
+
+1. HYPOTHESIS TESTING RESULTS
+--------------------------------------------------------------------------------
+H0: No correlation between error count and semantic similarity (ρ = 0)
+H1: Correlation exists (ρ ≠ 0)
+
+Pearson correlation: r = -0.1915
+P-value: 0.012374
+Decision: REJECT H0
+Conclusion: Statistically significant correlation exists
+
+2. CONFIDENCE INTERVALS
+--------------------------------------------------------------------------------
+95% CI for correlation: [-0.3324, -0.0422]
+Interpretation: We are 95% confident the true correlation lies in this range
+
+3. ANOVA RESULTS
+--------------------------------------------------------------------------------
+F-statistic: 1.3773
+P-value: 0.159722
+Decision: FAIL TO REJECT H0
+Eta-squared: 0.1259
+Variance explained: 12.59%
+
+4. EFFECT SIZE ANALYSIS
+--------------------------------------------------------------------------------
+R-squared: 0.0367
+Variance explained by error count: 3.67%
+Cohen's d (4 vs 20 mistakes): 0.7745
+Mean difference (4 vs 20): 0.0788
+
+5. STATISTICAL ASSUMPTIONS
+--------------------------------------------------------------------------------
+Normality test (Shapiro-Wilk): W = 0.9847, p = 0.059832
+Data normality: Satisfied
+
+6. FINAL CONCLUSIONS
+--------------------------------------------------------------------------------
+1. There IS a statistically significant negative correlation (r = -0.1915, p < 0.001)
+   between error count and semantic similarity.
+
+2. The correlation is MODERATE in strength (19.1% relationship).
+
+3. Error count explains 3.67% of variance in semantic similarity.
+
+4. Different error count groups have significantly different mean similarities
+   (F = 1.3773, p < 0.001).
+
+5. Practical interpretation: Higher error counts tend to result in lower
+   semantic similarity after multi-stage translation, but the effect is
+   moderate, suggesting the translation pipeline is reasonably robust.
+
+================================================================================
+Report generated: 2025-11-27 01:15:08.103117
+================================================================================

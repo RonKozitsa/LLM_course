@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3:*)",
+      "Bash(find:*)",
+      "Bash(python compare_two_versions.py:*)",
+      "Bash(python:*)",
+      "Bash(pip3 install:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
